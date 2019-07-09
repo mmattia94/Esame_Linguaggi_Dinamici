@@ -1,0 +1,148 @@
+.description {
+    font-size: small;
+    font-style: italic;
+}
+
+.title {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.label {
+    font-weight: bold;
+    color: darkgreen;
+}
+
+.separator {
+    border-bottom: thin solid lightgreen;
+    padding-top: 1px;
+}
+
+.custom-pagination {
+    padding: 10px;
+    text-align: center;
+}
+
+a.pagination-link:hover {
+    color: lightgreen;
+    text-decoration: none;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    background-color: palegreen;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    border-right: solid forestgreen 1px;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+}
+
+#sidebar a {
+    color: forestgreen;
+}
+
+#content {
+    padding: 20px;
+    margin-left: 250px ;
+    width: 100%;
+}
+
+#sidesearch {
+    background-color: palegreen;
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 100vh;
+    position: static;
+    border-left: solid forestgreen 1px;
+
+}
+
+#sidesearch.active {
+    margin-right: -250px;
+}
+
+#home {
+    width: 100%;
+    min-height: 1080px;
+    padding: 0 25%;
+    background-color: lemonchiffon;
+}
+
+.sidebar-menu {
+    margin: 10px;
+}
+
+.custom-select {
+    min-width: 20px;
+    border: 1px solid forestgreen;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='forestgreen' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
+
+}
+.custom-select:focus {
+    border-color: forestgreen;
+    box-shadow: 0 0 0 0.2rem palegreen;
+}
+
+.button {
+    background-color: palegreen;
+    border-radius: 10px;
+    /*border: none;*/
+    color: forestgreen;
+    padding: 0 10px;
+    border: solid 1px forestgreen;
+
+}
+
+.button:hover{
+    background-color: forestgreen;
+    color: palegreen;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+}
+
+.side-button {
+    background-color: forestgreen;
+    color: palegreen;
+    border-radius: 10px;
+    border: none;
+    padding: 0 10px;
+
+}
+.side-button:hover{
+    background-color: palegreen;
+    color: forestgreen;
+    border: solid 1px forestgreen;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.top-buffer {
+    padding-top: 10px;
+}
+
+a {
+    color: forestgreen;
+}
+
+a:hover{
+    color: lightgreen;
+}
+
+a:visited{
+    color: forestgreen;
+}
