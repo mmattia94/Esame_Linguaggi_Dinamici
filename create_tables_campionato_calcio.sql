@@ -2,10 +2,10 @@
 -- USO: mysql -p < create_tables_campionato_calcio.sql
 --
 
-DROP DATABASE IF EXISTS esame;
+DROP DATABASE IF EXISTS Esame;
 
-CREATE database esame;
-USE esame;
+CREATE database Esame;
+USE Esame;
 
 CREATE TABLE `campionato_calcio_campionato` (
        `id` INT(11) NOT NULL,
@@ -59,16 +59,16 @@ ADD PRIMARY KEY (`id`);
 ALTER TABLE `campionato_calcio_campionato`
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
-ALTER TABLE `Squadre`
+ALTER TABLE `campionato_calcio_squadra`
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `campionato_calcio_calendario`
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
-ALTER TABLE `Risultati`
+ALTER TABLE `campionato_calcio_risultati`
       MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
-ALTER TABLE `Calendario`
+ALTER TABLE `campionato_calcio_calendario`
       ADD FOREIGN KEY (campionato) REFERENCES Campionati(id);
 
 ALTER TABLE `campionato_calcio_calendario`
@@ -77,5 +77,5 @@ ALTER TABLE `campionato_calcio_calendario`
 ALTER TABLE `campionato_calcio_calendario`
       ADD FOREIGN KEY (ospiti) REFERENCES Squadre(id);
 
-ALTER TABLE `Risultati`
+ALTER TABLE `campionato_calcio_risultati`
       ADD FOREIGN KEY (partita) REFERENCES Calendario(id);
