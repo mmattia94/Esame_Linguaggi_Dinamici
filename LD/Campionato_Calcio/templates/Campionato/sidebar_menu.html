@@ -1,0 +1,19 @@
+<div id="sidebar">
+    {% if options_list %}
+        <div class="sidebar-menu">
+            {% for option in options_list %}
+                <p><a href="{{ HTTP_HOST }}/Campionato/{{ option.code }}/">
+                    <i class="fa fa-{{ option.icon }}"></i> {{ option.nome }}</a></p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <h1>Nessuna Funzionalit&agrave; Disponibile</h1>
+    {% endif %}
+    <div>
+        <a href="{% url 'logout' %}">
+            <button class="side-button" type="button">
+                <i class="fa fa-step-backward">
+                    Log out</i></button>
+        </a>
+    </div>
+</div>

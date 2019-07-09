@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block sidebar %}
+{% endblock sidebar %}
+{%  block content %}
+    <div id="home">
+        <h1>Esame Linguaggi Dinamici</h1>
+        <h2>2018/19 Sessione Estiva</h2>
+        <h3 class="separator">Miceli Mattia 83475</h3>
+        {% if options_list %}
+            <h5>Funzioni disponibili nel sito: </h5>
+            <ul>
+                {% for option in options_list %}
+                    <li><a href="{{ HTTP_HOST }}/Campionato/{{ option.code }}/">{{ option.nome }}</a></li>
+                {#            <a href="{% url 'Campionato_Calcio:option.code'  %}">{{ option.name }}</a>#}
+            {% endfor %}
+            </ul>
+        {% else %}
+        <h1>Nessuna Funzionalit&agrave; Disponibile</h1>
+    {% endif %}
+    </div>
+{% endblock content %}
+{% block sidesearch %}
+{% endblock sidesearch %}

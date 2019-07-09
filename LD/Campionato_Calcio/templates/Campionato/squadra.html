@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row" id="content">
+        <h4>Statistiche {{ squadra.nome }} per il campionato {{ campionato.nome }}</h4>
+        {% if squadra %}
+            {% block team %}
+                <div class="col-md-6" id="info">
+                    <div class="row top-buffer">
+                    <div class="col-md-3 label separator">Nome:</div>
+                    <div class="col-md-3 text-right separator">{{ squadra.nome }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator"> Reti effettuate:</div>
+                        <div class="col-md-3 text-right separator">{{ retiTotali }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator">Reti subite:</div>
+                        <div class="col-md-3 text-right separator">{{ retiSubite }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator">Vittorie:</div>
+                        <div class="col-md-3 text-right separator">{{ vittorie }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator">Sconfitte:</div>
+                        <div class="col-md-3 text-right separator">{{ sconfitte }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator">Pareggi:</div>
+                        <div class="col-md-3 text-right separator">{{ pareggi }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator">Punteggio finale:</div>
+                        <div class="col-md-3 text-right separator">{{ punteggioFinale }}</div>
+                    </div>
+                    <div class="row top-buffer">
+                        <div class="col-md-3 label separator">Posizione in classifica:</div>
+                        <div class="col-md-3 text-right separator">{{ posizione_classifica }}</div>
+                    </div>
+                </div>
+                <div class="col-md-4" id="stemma">
+                    {% load static %}
+                    <img src="{% static 'images/' %}{{ squadra.nome }}.png ">
+                </div>
+
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock content %}
+{% block sidesearch %}
+    {% include './side_sel_squadra.html' %}
+{% endblock sidesearch %}

@@ -1,0 +1,22 @@
+{% extends "./selector.html" %}
+
+{% block sel_campionato %}
+    <div class="col-md-4">
+    {% if campionati %}
+        <label for="camp_selector" class="description">Seleziona un campionato:</label>
+        <div>
+            <select class="custom-select" name="campionato" id="camp_selector">
+                {% for camp in campionati %}
+                    <option value="{{ camp.id }}">
+                        {{ camp.nome }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    {% else %}
+        <span>
+            <p>Nessun campionato registrato</p>
+        </span>
+    {% endif %}
+    </div>
+{% endblock sel_campionato %}

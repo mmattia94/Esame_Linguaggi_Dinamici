@@ -1,0 +1,17 @@
+{% extends "./side_sel_campionato.html" %}
+{% block side_sel_squadra %}
+    <div class="col-md-12">
+    {% if squadre %}
+        <label class="description" for="sel_squadra">Seleziona una squadra:</label>
+        <div style="text-align: center">
+            <select class="custom-select" name="squadra" id="sel_squadra" form="side_selector">
+                {% for squadra in squadre %}
+                    <option class="custom-option" value="{{ squadra.nome }}">{{ squadra.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    {% else %}
+        <p>Nessuna squadra registrata</p>
+    {% endif %}
+    </div>
+{% endblock  %}

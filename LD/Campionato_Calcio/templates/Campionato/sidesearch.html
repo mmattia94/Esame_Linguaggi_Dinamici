@@ -1,0 +1,23 @@
+{% block sidesearch %}
+    <div id="sidesearch">
+        <form method="post" id="side_selector">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            <div class="top-buffer">
+                {% block side_sel_campionato %}{% endblock side_sel_campionato %}
+            </div>
+            <div class="top-buffer">
+                {% block side_sel_giornata %}{% endblock side_sel_giornata %}
+            </div>
+            <div class="top-buffer">
+                {% block side_sel_squadra %}{% endblock side_sel_squadra %}
+            </div>
+
+            <div class="top-buffer">
+                <div class="col-md-2">
+                    <input class="side-button" type="submit" value="GO">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock sidesearch %}

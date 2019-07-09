@@ -1,0 +1,8 @@
+{% include 'header.html' %}
+<a href="{% url 'index' %}">Back to the main page</a>
+<h1>Create a new account</h1>
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Create account">
+</form>

@@ -1,0 +1,15 @@
+<html>
+    {% include './header.html' %}
+    <body>
+        <div class="wrapper">
+        {% block sidebar %}
+            {% include './Campionato/sidebar_menu.html' %}
+        {% endblock sidebar %}
+        {% block content %}
+        {% endblock content %}
+        {% block sidesearch %}
+{#            {% include './sidesearch.html' %}#}
+        {% endblock sidesearch %}
+        </div>
+    </body>
+</html>

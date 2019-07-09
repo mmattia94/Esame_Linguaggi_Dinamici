@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="content">
+        <h3>Risultati della giornata {{ g }} / {{ ar }} di {{ current_camp.nome }}</h3>
+        {% if partite %}
+            <div class="row">
+                <div class="col-md-2 title">Data</div>
+                <div class="col-md-2 title">Locali</div>
+                <div class="col-md-2 title">Ospiti</div>
+                <div class="col-md-2 title">Risultato</div>
+                <div class="col-md-1 title">Andata/Ritorno</div>
+            </div>
+            {% for p in partite %}
+                <div class="row">
+                    <div class="col-md-2 separator">{{ p.0.data }}</div>
+                    <div class="col-md-2 separator">
+                        <a href="{% url 'Campionato_Calcio:squadra' current_camp.id p.0.locali.nome %}">{{ p.0.locali.nome }}</a>
+                    </div>
+                    <div class="col-md-2 separator">
+                        <a href="{% url 'Campionato_Calcio:squadra' current_camp.id p.0.ospiti.nome %}">{{ p.0.ospiti.nome }}</a>
+                    </div>
+                    <div class="col-md-2 separator">{{ p.1.retiLocali }} - {{ p.1.retiOspiti }}</div>
+                    <div class="col-md-1 separator">{{ p.0.AR }}</div>
+
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <div>Non sono presenti partite per la giornata selezionata</div>
+        {% endif %}
+    </div>
+{% endblock content %}
+{% block sidesearch %}
+    {% include './side_sel_giornata.html' %}
+{% endblock sidesearch %}

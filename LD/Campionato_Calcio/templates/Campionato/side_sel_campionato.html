@@ -1,0 +1,22 @@
+{% extends 'Campionato/sidesearch.html' %}
+
+{% block side_sel_campionato %}
+    <div class="col-md-12">
+    {% if campionati %}
+        <label for="side_camp_selector" class="description">Seleziona un campionato:</label>
+        <div>
+            <select class="custom-select" name="campionato" id="side_camp_selector" form="side_selector">
+                {% for camp in campionati %}
+                    <option value="{{ camp.id }}">
+                        {{ camp.nome }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    {% else %}
+        <span>
+            <p>Nessun campionato registrato</p>
+        </span>
+    {% endif %}
+    </div>
+{% endblock side_sel_campionato %}

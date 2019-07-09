@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="content">
+        <h3>Classifica per {{ current_camp.nome }}</h3>
+        <div class="row">
+            <div class="col-md-1">
+                <span class="title">Posizione</span>
+            </div>
+            <div class="col-md-2">
+                <span class="title">Squadra</span>
+            </div>
+            <div class="col-md-2">
+                <span class="title">Punti</span>
+            </div>
+        </div>
+            {% if classificaFinale %}
+                {% for squadra in classificaFinale %}
+                    <div class="row">
+                        <div class="col-md-1 separator"><span>{{ forloop.counter }}</span></div>
+                        <div class="col-md-2 separator">
+                            <a href="{% url 'Campionato_Calcio:squadra' current_camp.id squadra.0 %}">{{ squadra.0 }}</a>
+                        </div>
+                        <div class="col-md-2 separator"><span>{{ squadra.1 }}</span></div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+    </div>
+{%  endblock content %}
+{% block sidesearch %}
+    {% include './side_sel_campionato.html' %}
+{% endblock sidesearch %}

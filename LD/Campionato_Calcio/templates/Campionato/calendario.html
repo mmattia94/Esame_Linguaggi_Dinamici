@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if calendario %}
+        <div id="content">
+            <h3>Calendario partite per {{ current_camp.nome }}</h3>
+            <div class="row">
+                <div class="col-md-2 title">Data</div>
+                <div class="col-md-2 title">Locali</div>
+                <div class="col-md-2 title">Ospiti</div>
+            </div>
+            {% for giornata in calendario %}
+                    <div class="row">
+                        <div class="col-md-2 separator">{{ giornata.data }}</div>
+                        <div class="col-md-2 separator">
+                            <a href="{% url 'Campionato_Calcio:squadra' current_camp.id giornata.locali.nome %}">{{ giornata.locali.nome }}</a>
+                        </div>
+                        <div class="col-md-2 separator">
+                            <a href="{% url 'Campionato_Calcio:squadra' current_camp.id giornata.ospiti.nome %}">{{ giornata.ospiti.nome }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            <div class="custom-pagination">
+                <span class="step-links">
+                    {% if calendario.has_previous %}
+                        <a class="pagination-link" href="?page=1">
+                            <i class="fa fa-step-backward" title="first"></i>
+                        </a>
+                        <a class="pagination-link" href="?page={{ calendario.previous_page_number }}">
+                            <i class="fa fa-caret-left" title="previous"></i>
+                        </a>
+                    {% endif %}
+                    <span class="current">
+                        Page {{ calendario.number }} of {{ calendario.paginator.num_pages }}
+                    </span>
+                    {% if calendario.has_next %}
+                        <a class="pagination-link" href="?page={{ calendario.next_page_number }}">
+                            <i class="fa fa-caret-right" title="next"></i>
+                        </a>
+                        <a class="pagination-link" href="?page={{ calendario.paginator.num_pages }}">
+                            <i class="fa fa-step-forward" title="last"></i>
+                        </a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}
+{% block sidesearch %}
+    {% include 'Campionato/side_sel_campionato.html' %}
+{% endblock sidesearch %}

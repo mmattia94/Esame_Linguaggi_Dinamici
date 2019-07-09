@@ -1,0 +1,23 @@
+{% extends './side_sel_campionato.html' %}
+
+{% block side_sel_giornata %}
+    {% if giornate %}
+        <div class="col-md-12">
+            <label class="description" for="side_sel_giornata">Seleziona la giornata:</label>
+            <div>
+                <select class="custom-select" name="giornata" id="side_sel_giornata" form="side_selector">
+                    {% for g in giornate %}
+                        <option class="custom-option" value="{{ g }}">{{ g }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+        <div class="col-md-2" style="padding-top:20px">
+            <input type="radio" name="ar" value="A" checked>Andata
+            <input type="radio" name="ar" value="R">Ritorno
+        </div>
+    {% else %}
+        <p>Nessuna giornata da selezionare</p>
+    {% endif %}
+{% endblock side_sel_giornata %}
