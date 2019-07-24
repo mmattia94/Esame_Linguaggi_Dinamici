@@ -47,20 +47,20 @@ CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
 ```
 
-script per creazione delle tabelle (NB: in Debian da un problema sulle Foreign Key)
-```
-mysql -p < create_tables_campionato_calcio.sql
-```
-
 FINAL SETUP
 -----------
 ```
 $$ cd ./LD
 $$ pip install -e .
-$$ python manage.py migrate
-$$ python manage.py runserver
-$$ python3 -c 'import campionato; campionato.py campionato.__init__("2015-16.json")'
-$$ python3 -c 'import campionato; campionato.py campionato.__nuovoCamp("2015-16.json")'
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+python3
+>>import campionato
+>>campionato.campionato("2015-16.json")
+>>campionato.campionato("2015-16.json")
+
+mysql -p < campionato_calcio_opzioni.sql
 $$ python manage.py runserver
 ```
 
