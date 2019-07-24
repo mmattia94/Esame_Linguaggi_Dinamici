@@ -25,7 +25,7 @@ class campionato:
         if not nome:
             return
         retcode, results = \
-            self.__selOneQuery("SELECT id from campionato_calcio_campionato WHERE nome = %s;", \
+            self.__selOneQuery("SELECT id from Campionato_Calcio_campionato WHERE nome = %s;", \
                                nome)
         if retcode == campionato.QUERY_OK:
             if not results:
@@ -100,8 +100,8 @@ class campionato:
         Se una squadra non è ancora inserita (caso prevedibilmnete raro
         in un DB reale) la inserisce e poi ne recupera subito l'id
         '''
-        query = "SELECT id from campionato_calcio_squadra WHERE nome = %s;"
-        query2 = "INSERT into campionato_calcio_squadra (nome) VALUES (%s);"
+        query = "SELECT id from Campionato_Calcio_squadra WHERE nome = %s;"
+        query2 = "INSERT into Campionato_Calcio_squadra (nome) VALUES (%s);"
         idSquadre = {} 
         with self.__dbOpen() as cursor:
             for squadra in squadre:
@@ -135,7 +135,7 @@ class campionato:
             nuovocamp = json.load(f)
         self.__nomecamp = nuovocamp['name']
         # Controlliamo comunque che il campionato non sia già stato inserito
-        query = "SELECT id from campionato_calcio_campionato WHERE nome=%s;"
+        query = "SELECT id from Campionato_Calcio_campionato WHERE nome=%s;"
         retcode, result = self.__selOneQuery(query, self.__nomecamp)
         if retcode != campionato.QUERY_OK:
             return retcode, query
@@ -144,13 +144,13 @@ class campionato:
             return self.__init__(self.__nomecamp)
             
         # Il campionato non esiste e va inserito
-        query = "INSERT into campionato_calcio_campionato (nome) VALUES (%s);"
+        query = "INSERT into Campionato_Calcio_campionato (nome) VALUES (%s);"
         retcode = self.__insQuery(query, self.__nomecamp)
         if retcode != campionato.QUERY_OK:
             return retcode, query
         
         # Dobbiamo subito recuperare l'id del campionato appena inserito
-        query = "SELECT id from campionato_calcio_campionato WHERE nome=%s;"
+        query = "SELECT id from Campionato_Calcio_campionato WHERE nome=%s;"
         retcode, result = self.__selOneQuery(query, self.__nomecamp)
         if retcode  != campionato.QUERY_OK:
             return retcode, query
@@ -170,12 +170,12 @@ class campionato:
         # Inserimento delle partite in calendario e dei risultati
         numsquadre = len(self.__squadre)
         durata = numsquadre-1
-        query = "INSERT into campionato_calcio_calendario " + \
+        query = "INSERT into Campionato_Calcio_calendario " + \
                 "(campionato_id, giornata, AR, data, locali_id, ospiti_id) " +\
                 "VALUES (%s, %s, %s, %s, %s, %s);"
-        query2 = "SELECT id from campionato_calcio_calendario WHERE " + \
+        query2 = "SELECT id from Campionato_Calcio_calendario WHERE " + \
                  "locali_id = %s AND ospiti_id = %s AND data = %s;"
-        query3 = "INSERT into campionato_calcio_risultati " + \
+        query3 = "INSERT into Campionato_Calcio_risultati " + \
                  "(partita, retiLocali, retiOspiti) " + \
                  "VALUES (%s, %s, %s);"
         for numGiornata, giornata in enumerate(giornate):
@@ -211,11 +211,11 @@ class campionato:
         "       Cal.data AS data, " + \
         "       SC.nome AS locali, SO.nome AS ospiti, " + \
         "       Ris.retiLocali AS retiLocali, Ris.retiOspiti AS retiOspiti " +\
-        "from campionato_calcio_campionato AS Cam " + \
-        "INNER JOIN campionato_calcio_calendario AS Cal ON Cal.campionato_id = Cam.id " + \
-        "INNER JOIN campionato_calcio_squadra AS SC ON Cal.locali_id = SC.id " + \
-        "INNER JOIN campionato_calcio_squadra AS SO ON Cal.ospiti_id = SO.id " + \
-        "LEFT JOIN campionato_calcio_risultati AS Ris ON Ris.partita = Cal.id " + \
+        "from Campionato_Calcio_campionato AS Cam " + \
+        "INNER JOIN Campionato_Calcio_calendario AS Cal ON Cal.campionato_id = Cam.id " + \
+        "INNER JOIN Campionato_Calcio_squadra AS SC ON Cal.locali_id = SC.id " + \
+        "INNER JOIN Campionato_Calcio_squadra AS SO ON Cal.ospiti_id = SO.id " + \
+        "LEFT JOIN Campionato_Calcio_risultati AS Ris ON Ris.partita = Cal.id " + \
         "WHERE Cam.id=%s ORDER BY girone ASC, Giornata ASC;"
         retcode = self.__insQuery(query, idcamp)
         if retcode  != campionato.QUERY_OK:
@@ -326,7 +326,7 @@ class campionato:
         
     def __getattr__(self,name):
         if name == '_campionato__squadre':
-            query = "SELECT DISTINCT Squadre.nome from campionato_calcio_squadra " + \
+            query = "SELECT DISTINCT Squadre.nome from Campionato_Calcio_squadra " + \
                     "INNER JOIN Calendario ON Calendario.locali=Squadre.id " + \
                     "INNER JOIN Campionati ON campionato=Campionati.id " + \
                     "WHERE Campionati.nome=%s;"
@@ -345,11 +345,4 @@ class campionato:
     @property
     def squadre(self):
         return self.__squadre
-        
-        
-        
-        
-        
-        
-        
         
