@@ -99,7 +99,7 @@ def calendario(request, camp_id):
     return render(request, 'Campionato/calendario.html', context)
 
 
-@login_required
+#@login_required
 def classifica(request, camp_id):
     if request and request.method == 'POST':
         if 'action' in request.POST and request.POST['action'] == 'classifica':
